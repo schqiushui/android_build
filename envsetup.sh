@@ -150,6 +150,7 @@ function setpaths()
     # defined in core/config.mk
     targetgccversion=$(get_build_var TARGET_GCC_VERSION)
     targetgccversion2=$(get_build_var 2ND_TARGET_GCC_VERSION)
+    targetgccversionkernel=$(get_build_var TARGET_GCC_VERSION_KERNEL)
     export TARGET_GCC_VERSION=$targetgccversion
 
     # The gcc toolchain does not exists for windows/cygwin. In this case, do not reference it.
@@ -193,7 +194,7 @@ function setpaths()
             if [ "$(uname)" = "Linux" ] && [ -n "$(get_build_var MK_TOOLCHAIN_VARIANT)" ]; then
                 toolchaindir=arm/$(get_build_var MK_TOOLCHAIN_VARIANT)-arm-eabi-$targetgccversion/bin
             else
-                toolchaindir=arm/arm-eabi-$targetgccversion/bin
+                toolchaindir=arm/arm-eabi-$targetgccversionkernel/bin
             fi
             if [ -d "$gccprebuiltdir/$toolchaindir" ]; then
                  export ARM_EABI_TOOLCHAIN="$gccprebuiltdir/$toolchaindir"
